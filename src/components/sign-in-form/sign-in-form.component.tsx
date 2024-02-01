@@ -28,7 +28,7 @@ const SignInForm = () => {
     dispatch(googleSignInStart());
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -39,7 +39,7 @@ const SignInForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });
