@@ -1,7 +1,16 @@
-import { screen } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
+import * as reactRedux from "react-redux";
 
 import Navigation from "../navigation.component";
 import { renderWithProviders } from "../../../utils/test/test.utils";
+import { signOutStart } from "../../../store/user/user.action";
+
+const mockDispatch = jest.fn();
+
+jest.mock("react-redux", () => ({
+  ...jest.requireActual("react-redux"),
+  useDispatch: () => mockDispatch,
+}));
 
 describe("Navigation tests", () => {
   test("should render a sign in link and not a sign out link if there is not a current user", () => {
@@ -62,5 +71,23 @@ describe("Navigation tests", () => {
 
     const dropdownTextElement = screen.getByText(/your cart is empty/i);
     expect(dropdownTextElement).toBeInTheDocument();
+  });
+
+  test("should dispatch signOutStart action when clicking on the Sign Out link", async () => {
+    renderWithProviders(<Navigation />, {
+      preloadedState: {
+        user: {
+          currentUser: {},
+        },
+      },
+    });
+
+    const signOutLinkElement = screen.getByText(/sign out/i);
+    expect(signOutLinkElement).toBeInTheDocument();
+
+    await fireEvent.click(signOutLinkElement);
+
+    expect(mockDispatch).toHaveBeenCalled();
+    expect(mockDispatch).toHaveBeenCalledWith(signOutStart());
   });
 });
