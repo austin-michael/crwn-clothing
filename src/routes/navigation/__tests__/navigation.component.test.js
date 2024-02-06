@@ -89,5 +89,7 @@ describe("Navigation tests", () => {
 
     expect(mockDispatch).toHaveBeenCalled();
     expect(mockDispatch).toHaveBeenCalledWith(signOutStart());
+
+    mockDispatch.mockClear();
   });
 });
