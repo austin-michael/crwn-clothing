@@ -15,6 +15,7 @@ import {
   Arrow,
   Value,
   RemoveButton,
+  PriceSpan,
 } from "./checkout-item.styles";
 import { CartItem } from "../../store/cart/cart.types";
 
@@ -44,7 +45,7 @@ const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
         <Value>{quantity}</Value>
         <Arrow onClick={addItemHandler}>&#10095;</Arrow>
       </Quantity>
-      <BaseSpan> {price}</BaseSpan>
+      <PriceSpan>{price}</PriceSpan>
       <RemoveButton onClick={clearItemHandler}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );

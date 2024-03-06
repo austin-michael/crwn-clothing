@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -24,6 +24,14 @@ export const BaseSpan = styled.span`
   width: 23%;
 `;
 
+export const PriceSpan = styled.span`
+  width: 23%;
+
+  @media screen and (max-width: 600px) {
+    width: 16%;
+  }
+`;
+
 export const Quantity = styled(BaseSpan)`
   display: flex;
 `;
@@ -39,4 +47,10 @@ export const Value = styled.span`
 export const RemoveButton = styled.div`
   padding-left: 12px;
   cursor: pointer;
+
+  width: 8%;
+
+  @media screen and (max-width: 600px) {
+    width: 15%;
+  }
 `;
